@@ -1,0 +1,59 @@
+﻿@model Loan
+
+<div class="Container border p-3 mt-5 bg-dark w-100 mx-auto">
+	<div class="m-1 bg-primary">
+		<h2 class="text-warning display-6 p-2 ">Loan Details</h2>
+		<hr />
+	</div>
+	<div class="d-flex justify-content-around mb-3">
+		<div class="mt-2">
+			<h2 class="fw-bold  text-light">Loan # @Model.Id </h2>
+			<h6 class="fw-bold p-3 text-light">Loan Date: @Model.LoanDate.ToString("MM/dd/yyyy hh:mm tt") </h6>
+			<h6 class="fw-bold p-3 text-light">Loan Date: @Model.ReturnDate.ToString("MM/dd/yyyy hh:mm tt") </h6>
+			<h6 class="fw-bold p-3 text-light">Loan Date: @Model.Status</h6>
+		</div>
+
+		<div class="mt-2">
+			<h3 class="fw-bold text-light">User Name: @Model.User.Name </h3>
+			<h6 class="fw-bold  text-light">Phone No.: @Model.User.PhoneNo </h6>
+		</div>
+	</div>
+	<div class="mt-5 text-light ps-5 ">
+		<h4 class="fw-bold text-warning">Loan Details: </h4>
+		<div class="Container mb-3 ps-5">
+			<table class="table table-hover w-75 text-light">
+				<thead>
+					<tr>
+						<th width="45%" scope="col">Book Name</th>
+						<th width="30%" scope="col">Book ISBN</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (BookCopy item in Model.Copy)
+					{
+						<tr class="table-primary">
+							<td width="45%">@item.Book.Title</td>
+							<td width="30%">@item.Book.ISBN</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="mt-5">
+		<a asp-controller="User" asp-action="Detail" asp-route-id="@Model.UserId" class="btn btn-primary" style="width:250px">
+			Back to User Detail
+		</a>
+		<a asp-controller="Loan" asp-action="Index" class="btn btn-primary" style="width:200px">
+			Back to Loan List
+		</a>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+}
+

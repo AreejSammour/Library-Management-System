@@ -1,0 +1,61 @@
+﻿@model User
+
+
+<div class="border p-3 mt-5 bg-dark w-75 mx-auto">
+	<div class="row pb-2">
+		<h2 class="text-warning">User Details</h2>
+		<hr />
+	</div>
+
+	<div class="mb-3 text-light w-75 ps-3">
+		<h3 class="fw-bold  text-light">User Name: @Model.Name </h3>
+	</div>
+
+	<div class="d-flex justify-content-around mb-3">
+		<div class="mt-5 text-white ps-5">
+			<h3 class="fw-bold  text-light">User Address: </h3>
+			<div class="Container mb-3 ps-5">
+				<h5 class="fw-bold  text-light">Street: @Model.Address.Street</h5>
+				<h5 class="fw-bold text-light">Post Code: @Model.Address.PostCode</h5>
+				<h5 class="fw-bold text-light">City: @Model.Address.City</h5>
+				<h5 class="fw-bold text-light">Country: @Model.Address.Country</h5>
+			</div>
+		</div>
+		<div class="mt-5">
+			<h3 class="fw-bold text-warning">Loans Ids Of User</h3>
+			@if (Model.LoanList != null)
+			{
+				foreach (Loan item in Model.LoanList)
+				{
+					<a class="nav-link" asp-controller="Loan" asp-action="Detail" asp-route-id="@item.Id">
+						<h5 class="text-light ps-5">Loan # @item.Id</h5>
+					</a>
+				}
+			}
+			else
+			{
+				<h5 class="text-light ps-5">No Loans for user</h5>
+			}
+		</div>
+	</div>
+
+	<div class="mb-3 mt-5 text-light ps-5">
+		<h5 class="fw-bold text-light">PhoneNo: @Model.PhoneNo</h5>
+	</div>
+	<br />
+
+	<a asp-controller="User" asp-action="Index" class="btn btn-secondary" style="width:200px">
+		Back to User List
+	</a>
+	<a asp-controller="Loan" asp-action="Index" class="btn btn-secondary" style="width:200px">
+		Back to Loan List
+	</a>
+	
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+}

@@ -1,0 +1,30 @@
+﻿@model List<Genre>
+@{
+    ViewData["Title"] = "Genres Page";
+}
+
+
+<div class="col-6 mt-5">
+    <h1 class=" display-6 text-primary text-dark fw-bold">Genres List</h1>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-dark">
+            <th scope="col" >
+                <h2 class="text-light">Genre Name</h2>
+			</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Genre item in Model)
+        {
+            <tr class="table-success">
+                <td scope="row">
+                    <h4 class="text-dark">@item.Name</h4>
+                    @Html.Partial("_GenreBooks",item)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

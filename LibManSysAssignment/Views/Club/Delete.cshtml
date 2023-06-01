@@ -1,0 +1,25 @@
+﻿@model Club
+
+<form method="post" asp-action="Delete">
+	<input asp-for="Id" hidden />
+	<div class="border p-5 mt-5 bg-dark w-75 mx-auto ">
+		<div class="row pb-2 ">
+			<h1 class="text-warning mt-2">Delete Book Club</h1>
+			<hr />
+		</div>
+		<div class="mb-3 text-light mt-5 ps-5">
+			<h3 class="fw-bold  text-light ">Book Club Name>>.. @Model.Name</h3>
+		</div>
+
+		<button type="submit" class="btn btn-warning mt-5" style="width:100px">Delete</button>
+		<a asp-controller="Club" asp-action="Index" class="btn btn-secondary mt-5" style="width:170px">
+			Back to List
+		</a>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

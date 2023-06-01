@@ -1,0 +1,58 @@
+﻿@model Club
+
+@{
+	int i = 0;
+}
+
+<form method="post" asp-action="Edit">
+	<input asp-for="Id" hidden />
+	<div class="border p-3 mt-5 bg-dark w-75 mx-auto">
+		<div class="row pb-2">
+			<h2 class="text-warning">Mange Users</h2>
+			<hr />
+		</div>
+		<div class="mb-3 text-light">
+			<h4 class="text-light">Book Club Name : @Model.Name</h4>
+		</div>
+		<div class="mb-3 text-light ps-5">
+			<label for="User" class="form-label">Users in this Book Club</label>
+			<div class="input-group mb-3">
+				@if (Model.Users != null)
+				{
+					@foreach (User user in Model.Users)
+					{
+						<h5 class="text-warning ps-5">User: @Model.Users[i].Name</h5>
+						i++;
+					}
+				}
+				else
+				{
+					<h4 class="text-light">No members in This Club</h4>
+				}
+			</div>
+		</div>
+
+
+		<div class="mb-3 text-light mt-5">
+			<button asp-controller="Club" asp-action="" type="submit"
+				class="btn btn-light mt-5">
+				Click to Add New User
+			</button>
+			<button asp-controller="" asp-action="" type="submit"
+				class="btn btn-light mt-5">
+				Click to Delete User
+			</button>
+		</div>
+
+		<button type="submit" class="btn btn-warning mt-5" style="width:100px">Update</button>
+		<a asp-controller="Club" asp-action="Index" class="btn btn-secondary mt-5" style="width:170px">
+			Back to List
+		</a>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

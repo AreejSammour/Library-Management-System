@@ -1,0 +1,54 @@
+﻿@model Loan
+
+<form method="post" asp-action="Edit">
+<div class="Container border p-3 mt-5 bg-success w-75 mx-auto text-dark">
+	<div class="m-1">
+		<h2 class="text-dark display-6 p-2 fw-bold">Loan Status</h2>
+		<hr />
+	</div>
+	<div class="d-flex justify-content-around mb-3">
+		<div class="mt-2">
+			<h2 class="fw-bold  ">Loan # @Model.Id </h2>
+			<h6 class="fw-bold p-2">Loan Date: @Model.LoanDate.ToString("MM/dd/yyyy hh:mm tt") </h6>
+			<h6 class="fw-bold p-2">Loan Date: @Model.ReturnDate.ToString("MM/dd/yyyy hh:mm tt") </h6>
+		</div>
+		<div class="mt-2">
+			<h3 class="fw-bold">User Name: @Model.User.Name </h3>
+			<h6 class="fw-bold">Phone No.: @Model.User.PhoneNo </h6>
+		</div>
+	</div>
+
+	<h4 class="fw-bold mt-5 ps-2">Loan Details: </h4>
+	<hr />
+
+	<div class="d-flex justify-content-between mb-3">
+		<div class="mt-2 ps-5">
+			@foreach (BookCopy item in Model.Copy)
+			{
+				<h5>@item.Book.Title</h5>
+			}
+		</div>
+		<div class="m-1 bg-primary p-3">
+			<h5 class="text-warning">Loan is @Model.Status</h5>
+			<h5 class="text-warning mt-3">The user returned the books !!</h5>
+			<button type="submit" class="btn btn-outline-danger p-2 mt-3" asp-controller="Loan" asp-action="StatusInhouse" asp-route-id="@Model">
+				Change Status
+			</button>
+			
+		</div>
+	</div>
+	<div class="mt-5">
+		<a asp-controller="Loan" asp-action="Index" class="btn btn-primary text-success " style="width:200px">
+			Back to Loan List
+		</a>
+	</div>
+</div>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+}
+

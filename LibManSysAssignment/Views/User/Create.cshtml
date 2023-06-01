@@ -1,0 +1,47 @@
+﻿@model User
+
+<form method="post" class="mt-3">
+	<div class="border p-3 mt-5 bg-dark w-75 mx-auto">
+		<div class="row pb-2">
+			<h2 class="text-warning">Add new User</h2>
+			<hr />
+		</div>
+
+		<div class="mb-3 text-light w-75">
+			<label asp-for="Name"></label>
+			<input asp-for="@Model.Name" class="form-control rounded-3" placeholder="User name .. " />
+		</div>
+
+		<div class="mb-3 text-white">
+			<div class="Container mb-3 mx-auto">
+				<h6 class="fw-bold  text-light">Street: </h6>
+				<input type="text" class="form-control form-control-sm mt-1 rounded-3" asp-for="@Model.Address.Street" placeholder="Street name .. " /><br />
+				<h6 class="fw-bold text-light">Post Code: </h6>
+				<input type="text" class="form-control form-control-sm mt-1 w-25 rounded-3" asp-for="@Model.Address.PostCode" placeholder="Post Code No." /><br />
+				<h6 class="fw-bold text-light">City: </h6>
+				<input type="text" class="form-control form-control-sm mt-1 w-25 rounded-3" asp-for="@Model.Address.City" placeholder="City Name .." /><br />
+				<h6 class="fw-bold text-light">Country: </h6>
+				<input type="text" class="form-control form-control-sm mt-1 w-50 rounded-3" asp-for="@Model.Address.Country" placeholder="Country Name .." /><br />
+
+			</div>
+		</div>
+
+		<div class="mb-3 text-light">
+			<label asp-for="PhoneNo"></label>
+			<input asp-for="@Model.PhoneNo" class="form-control rounded-3 w-25" placeholder="Phone/mobile No .. " />
+			<span asp-validation-for="PhoneNo" class="text-danger"></span>
+		</div>
+
+		<button type="submit" class="btn btn-warning" style="width:100px">Create</button>
+		<a asp-controller="User" asp-action="Index" class="btn btn-secondary" style="width:200px">
+			Back to User List
+		</a>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+}

@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center m-5 bg-success">
+    <h1 class="display-4">Library Management System</h1>
+    <h4>Web app with ASP.NET Core MVC and Ef</a>.</h4>
+</div>
+<div class="m-5 pb-5 d-flex flex-wrap justify-content-center">
+    <div class="container mt-3 bg-info w-25">
+        <h3 class="text-center m-2">Users records management </h3>
+        <div class="card">
+            <img class="card-img-top" src="..\images\Users.jpg" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <a asp-controller="User" asp-action="Index" class="btn btn-primary bg-dark">Enter</a>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <div class="container mt-3 bg-info w-25">
+        <h3 class="text-center m-2">Management of loaned books </h3>
+        <div class="card">
+            <img class="card-img-top" src="..\images\bookloan.jpg" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <a asp-controller="Loan" asp-action="Index" class="btn btn-primary bg-dark">Enter</a>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <div class="container mt-3 bg-info w-25">
+        <h3 class="text-center m-2">Book Clubs management </h3>
+        <div class="card">
+            <img class="card-img-top" src="..\images\club.png" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <a asp-controller="Club" asp-action="Index" class="btn btn-primary bg-dark">Enter</a>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>

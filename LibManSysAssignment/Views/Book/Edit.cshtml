@@ -1,0 +1,82 @@
+﻿@model Book
+
+@{
+    int i = 1;
+}
+
+<form method="post" asp-action="Edit">
+	<input asp-for="Id" hidden />
+	<div class="border p-3 mt-5 bg-dark w-75 mx-auto">
+		<div class="row pb-2">
+			<h2 class="text-warning">Update Book information</h2>
+			<hr />
+		</div>
+		<div class="mb-3 text-light">
+			<label asp-for="Title"></label>
+			<input asp-for="Title" class="form-control" />
+			<span asp-validation-for="Title" class="text-danger"></span>
+		</div>
+		<div class="mb-3 text-light">
+			<label for="Author" class="form-label">Authors</label>
+			<div class="input-group mb-3">
+				<span class="input-group-text">Author: </span>
+				<input class="form-control" asp-for="@Model.Authors[0].Name" />
+				<span class="input-group-text">Author: </span>
+				<input class="form-control" asp-for="@Model.Authors[1].Name" />
+				<span class="input-group-text">Author: </span>
+				<input class="form-control" asp-for="@Model.Authors[2].Name" />
+			</div>
+		</div>
+		<div class="mb-3 text-light">
+			<label for="Genre" class="form-label">Geners</label>
+			<div class="input-group mb-3">
+				<span class="input-group-text">Genre: </span>
+				<input class="form-control" asp-for="@Model.Genres[0].Name" />
+				<span class="input-group-text">Genre: </span>
+				<input class="form-control" asp-for="@Model.Genres[1].Name" />
+				<span class="input-group-text">Genre: </span>
+				<input class="form-control" asp-for="@Model.Genres[2].Name" />
+			</div>
+		</div>
+		<div class="mb-3 text-light">
+			<label asp-for="ISBN"></label>
+			<input asp-for="ISBN" class="form-control" />
+			<span asp-validation-for="ISBN" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 text-light">
+			<h4 class="card-text m-3 text-light">There is <span class="text-bg-danger">@Model.Quantity</span> copies of this book</h4>
+			@*<label asp-for="Quantity"></label>
+			<input asp-for="Quantity" class="form-control" />
+			<span asp-validation-for="Quantity" class="text-danger"></span>*@
+		</div>
+		<div class="mb-3 text-light mt-5">
+			@foreach (BookCopy item in Model.Copys)
+			{
+				if (@item.IsAvailable)
+				{
+					<h5 class="ps-5 text-light mt-5">Copy @i is inhouse</h5>
+				}
+				else
+				{
+					<h5 class="ps-5 text-light mt-5">Copy @i is checkedout</h5>
+				}
+				i++;
+			}
+			<button asp-controller="Book" asp-action="AddCopies" type="submit" 
+				class="btn btn-light mt-5" >
+				Click to Add New Copy</button>
+		</div>
+
+		<button type="submit" class="btn btn-warning mt-5" style="width:100px">Update</button>
+		<a asp-controller="Book" asp-action="Index" class="btn btn-secondary mt-5" style="width:170px">
+			Back to List
+		</a>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

@@ -1,0 +1,53 @@
+﻿@model Book
+
+<form method="post" asp-action="Delete">
+	<input asp-for="Id" hidden />
+	<div class="border p-3 mt-5 bg-dark w-75 mx-auto ">
+		<div class="row pb-2 ">
+			<h1 class="text-warning">Delete Book</h1>
+			<hr />
+		</div>
+		<div class="mb-3 text-light ">
+			<h3 class="fw-bold  text-light ">Book Name: @Model.Title</h3>
+		</div>
+
+		<div class="mb-3 mt-3 ps-5 text-light">
+			<h5 class="fw-bold  text-light">Authors: </h5>
+			<div class="ps-5">
+				@foreach (Author item in Model.Authors)
+				{
+					<h5 class="fw-bold  text-light">@Model.Authors[0].Name</h5>
+				}
+			</div>
+		</div>
+
+		<div class="mb-3 mt-3 ps-5 text-light">
+			<h5 class="fw-bold  text-light">Genres: </h5>
+			<div class="ps-5">
+				@foreach (Genre item in Model.Genres)
+				{
+					<h5 class="fw-bold  text-light">@Model.Genres[0].Name</h5>
+				}
+			</div>
+		</div>
+
+		<div class="mb-3 mt-5 ps-5 text-light">
+			<h5 class="fw-bold  text-light">ISBN: @Model.ISBN </h5>
+		</div>
+
+		<div class="mb-5 mt-5 ps-5 text-light">
+			<h5 class="fw-bold  text-light">Book Copies: @Model.Quantity</h5>
+		</div>
+
+		<button type="submit" class="btn btn-warning" style="width:100px">Delete</button>
+		<a asp-controller="Book" asp-action="Index" class="btn btn-secondary" style="width:170px">
+			Back to List
+		</a>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

@@ -1,0 +1,38 @@
+﻿@model Club
+
+<form method="post">
+	<div class="border p-3 mt-5 bg-dark w-75 mx-auto">
+		<div class="row pb-2">
+			<h2 class="text-warning">Add new Club</h2>
+			<hr />
+		</div>
+
+		<div class="mb-3 text-light">
+			<label asp-for="Name">Club Name</label>
+			<input asp-for="Name" class="form-control" />
+		</div>
+
+		<div class="mb-3 text-light">
+			<label for="User" class="form-label">Members (Users):</label>
+			<div class="input-group mb-3">
+				<span class="input-group-text">User1: </span>
+				<input class="form-control" asp-for="@Model.Users[0].Name" placeholder="Enter user name or (-)" />
+				<span class="input-group-text">User1: </span>
+				<input class="form-control" asp-for="@Model.Users[1].Name" placeholder="Enter user name or (-)" />
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-warning" style="width:100px">Create</button>
+		<a asp-controller="Club" asp-action="Index" class="btn btn-secondary" style="width:200px">
+			Back to Club List
+		</a>
+
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+}
